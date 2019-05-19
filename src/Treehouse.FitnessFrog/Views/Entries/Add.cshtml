@@ -1,5 +1,4 @@
-﻿@model Treehouse.FitnessFrog.Models.Entry
-@using Treehouse.FitnessFrog.Models
+﻿
 @{
     ViewBag.Title = "Add Entry";
 
@@ -22,82 +21,4 @@
 
 <h2>@ViewBag.Title</h2>
 
-@Html.ValidationSummary(false,"The Following Erros were Found",new { @class="alert alert-danger" })
-
-@using (Html.BeginForm())
-{
-    <div class="row">
-
-        <div class="col-md-6">
-
-            <div class="form-group">
-                @Html.LabelFor(e => e.Date,new { @class = "control-label"})
-                @Html.TextBoxFor(e => e.Date,"{0:d}",new { @class="form-control datepicker" })
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(e =>e.ActivityId, new { @class="control-label"})
-                @Html.DropDownListFor(e => e.ActivityId, (SelectList)ViewBag.ActivitiesSelectListItems,"",new { @class = "form-control"})
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(e => e.Duration, new { @class = "control-label" })
-                @Html.TextBoxFor(e => e.Duration, new { @class = "form-control" })
-                @Html.ValidationMessageFor(e => e.Duration, "Duration should be greater than zero.")
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(e => e.Intensity, new { @class = "control-label" })
-                <div>
-                    @*This is one way,Another way is by using model values
-                    @Html.RadioButtonFor(e => e.Intensity, "Low") Low
-                    @Html.RadioButtonFor(e => e.Intensity, "Medium") Medium
-                    @Html.RadioButtonFor(e => e.Intensity, "High") High*@
-
-                    @*With below way you don't have to make changes to the view and there are less chances of making any error*@
-                    <label class="radio-inline">
-                        @Html.RadioButtonFor(e => e.Intensity, Entry.IntensityLevel.Low) @Entry.IntensityLevel.Low
-                    </label>
-                    <label class="radio-inline">
-                        @Html.RadioButtonFor(e => e.Intensity, Entry.IntensityLevel.Medium) @Entry.IntensityLevel.Medium
-                    </label>
-                    <label class="radio-inline">
-                        @Html.RadioButtonFor(e => e.Intensity, Entry.IntensityLevel.High) @Entry.IntensityLevel.High
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        @Html.CheckBoxFor(e => e.Exclude) @Html.DisplayNameFor(e => e.Exclude)
-                    </label>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-md-6">
-
-            <div class="form-group">
-                @Html.LabelFor(e => e.Notes, new { @class = "control-label" })
-                @Html.TextAreaFor(e => e.Notes,14,20, new { @class = "form-control" })
-            </div>
-
-        </div>
-
-        <div class="col-md-12">
-            <div class="pad-top">
-                <button type="submit" class="btn btn-success btn-lg margin-right">
-                    <span class="glyphicon glyphicon-save"></span> Save
-                </button>
-                <a href="@Url.Action("Index")" class="btn btn-warning btn-lg">
-                    <span class="glyphicon glyphicon-remove"></span> Cancel
-                </a>
-            </div>
-        </div>
-
-    </div>
-
-}
-
+@Html.Partial("_EntryForm")
