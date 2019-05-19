@@ -58,6 +58,7 @@ namespace Treehouse.FitnessFrog.Models
         /// <summary>
         /// The date of the entry. Should not include a time portion.
         /// </summary>
+        [Required]
         public DateTime Date { get; set; }
 
         /// <summary>
@@ -89,6 +90,7 @@ namespace Treehouse.FitnessFrog.Models
         /// <summary>
         /// The notes for the entry.
         /// </summary>
+        [MaxLength(200,ErrorMessage ="Notes field should not contain more than 200 chars")]
         public string Notes { get; set; }
     }
 }
