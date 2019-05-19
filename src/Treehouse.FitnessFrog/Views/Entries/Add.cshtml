@@ -1,4 +1,5 @@
 ﻿@model Treehouse.FitnessFrog.Models.Entry
+@using Treehouse.FitnessFrog.Models
 @{
     ViewBag.Title = "Add Entry";
 
@@ -44,12 +45,31 @@
 
             <div class="form-group">
                 @Html.LabelFor(e => e.Intensity, new { @class = "control-label" })
-                @Html.TextBoxFor(e => e.Intensity, new { @class = "form-control" })
+                <div>
+                    @*This is one way,Another way is by using model values
+                    @Html.RadioButtonFor(e => e.Intensity, "Low") Low
+                    @Html.RadioButtonFor(e => e.Intensity, "Medium") Medium
+                    @Html.RadioButtonFor(e => e.Intensity, "High") High*@
+
+                    @*With below way you don't have to make changes to the view and there are less chances of making any error*@
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(e => e.Intensity, Entry.IntensityLevel.Low) @Entry.IntensityLevel.Low
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(e => e.Intensity, Entry.IntensityLevel.Medium) @Entry.IntensityLevel.Medium
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(e => e.Intensity, Entry.IntensityLevel.High) @Entry.IntensityLevel.High
+                    </label>
+                </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(e => e.Exclude, new { @class = "control-label" })
-                @Html.TextBoxFor(e => e.Exclude, new { @class = "form-control" })
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(e => e.Exclude) @Html.DisplayNameFor(e => e.Exclude)
+                    </label>
+                </div>
             </div>
 
         </div>
