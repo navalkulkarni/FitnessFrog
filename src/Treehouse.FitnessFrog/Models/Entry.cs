@@ -58,7 +58,7 @@ namespace Treehouse.FitnessFrog.Models
         /// <summary>
         /// The date of the entry. Should not include a time portion.
         /// </summary>
-        [Required]
+        
         public DateTime Date { get; set; }
 
         /// <summary>

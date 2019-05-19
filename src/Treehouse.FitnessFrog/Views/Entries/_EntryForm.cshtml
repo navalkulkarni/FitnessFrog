@@ -1,10 +1,11 @@
 ﻿@model Treehouse.FitnessFrog.Models.Entry
 @using Treehouse.FitnessFrog.Models
 
-@Html.ValidationSummary(false, "The Following Erros were Found", new { @class = "alert alert-danger" })
+
 
 @using (Html.BeginForm())
 {
+    @Html.ValidationSummary(false, "The Following Erros were Found", new { @class = "alert alert-danger" })
     <div class="row">
 
         <div class="col-md-6">
